@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             LocationCatalogSeeder::class,
             ReportReasonSeeder::class,
             OrganizationServiceTemplateSeeder::class,
+            MarketingCampaignSeeder::class,
         ]);
     }
 }
