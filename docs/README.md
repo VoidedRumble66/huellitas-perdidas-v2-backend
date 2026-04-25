@@ -7,11 +7,9 @@ Huellitas Perdidas v2 es la reestructuración completa del backend de la platafo
 - **PostgreSQL** como base de datos principal.
 - **Laravel Sanctum** para autenticación API con tokens.
 
-## Alcance de la fase 1
-Esta primera fase incluye únicamente:
-- Usuarios (`users`)
-- Roles (`roles` + pivote `role_user`)
-- Perfiles de usuario (`user_profiles`)
+## Alcance actual
+- **Fase 1**: Usuarios (`users`), roles (`roles` + `role_user`) y perfiles (`user_profiles`).
+- **Fase 2**: Catálogos y ubicación (`species`, `breeds`, `colors`, `states`, `municipalities`, `neighborhoods`, `locations`).
 
 ## Objetivo de consumo
 El backend queda preparado para:
