@@ -49,6 +49,13 @@ php artisan serve
 - `php artisan migrate --seed`
 - `php artisan serve`
 
+
+## Enfoque actual del producto
+Huellitas Perdidas v2 iniciará como una plataforma web responsive con características PWA instalable. Esto permitirá que los usuarios accedan desde navegador o instalen el sitio en su celular como icono tipo app. La arquitectura permanecerá preparada para una futura aplicación móvil nativa o híbrida mediante API.
+
+- Base de datos principal completada.
+- Enfoque actualizado a Web Responsive + PWA + API-ready architecture.
+
 ## Progreso del proyecto
 - ✅ Fase 1 completada: usuarios, roles y perfiles.
 - ✅ Fase 2 completada: catálogos y ubicación.
@@ -56,7 +63,7 @@ php artisan serve
 - ✅ Bloque A completado: comentarios, avistamientos, reportes y moderación.
 - ✅ Bloque B completado: adopciones y organizaciones.
 
-Módulos pendientes para fases siguientes: reputación, métricas de negocio y difusión en redes.
+Módulos siguientes: implementación de funcionalidades de negocio, flujo web responsive y capacidades PWA progresivas.
 
 ## Documentación
 Consulta la carpeta [`/docs`](docs) para arquitectura, base de datos, reglas técnicas e instalación en Herd.

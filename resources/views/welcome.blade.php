@@ -3,6 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#7A4E2D">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-title" content="Huellitas">
+        <link rel="manifest" href="/manifest.webmanifest">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -221,5 +226,15 @@
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif
+    
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js').catch(() => {
+                        // Registro opcional; se evita romper la vista si falla.
+                    });
+                });
+            }
+        </script>
     </body>
 </html>
