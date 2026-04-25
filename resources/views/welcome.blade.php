@@ -11,7 +11,7 @@
                         <img
                             src="{{ asset('images/logo.png') }}"
                             alt="Logo de Huellitas Perdidas"
-                            class="hp-logo"
+                            class="hp-logo-img"
                             onerror="this.classList.add('hp-hidden'); this.nextElementSibling.classList.remove('hp-hidden');"
                         >
                         <span class="hp-logo-fallback hp-hidden" aria-hidden="true">HP</span>

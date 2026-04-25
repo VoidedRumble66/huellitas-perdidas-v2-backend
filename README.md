@@ -78,3 +78,6 @@ Consulta la carpeta [`/docs`](docs) para arquitectura, base de datos, reglas té
 - Logo oficial en `public/images/logo.png` con integración en navbar, footer y home.
 - Sistema visual reusable con paleta por gamas y soporte de modo claro/oscuro.
 - Se evita CSS inline grande en Blade para mantener consistencia y escalabilidad.
+
+- Montserrat como fuente oficial en layout y componentes clave.
+- Navbar desktop en una sola línea (logo, menú, acciones) con contraste reforzado en modo oscuro.

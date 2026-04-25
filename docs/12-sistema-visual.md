@@ -65,3 +65,20 @@
 3. Mantener mínimo 44px en controles táctiles principales.
 4. Mantener foco visible y navegación por teclado.
 5. No usar colores fuera de la paleta salvo caso justificado.
+
+## Tipografía oficial
+- Fuente principal: **Montserrat** (400, 500, 600, 700, 800, 900).
+- Fallback: `'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`.
+
+## Reglas del logo
+- Logo oficial: `public/images/logo.png`.
+- Debe renderizarse sin fondo agregado, sin borde, sin recorte y sin redondeo forzado.
+- Clase recomendada: `.hp-logo-img` con `object-fit: contain`.
+
+## Reglas de navbar
+- Desktop: una sola línea con logo izquierda, menú centrado y acciones a la derecha.
+- Móvil: logo izquierda, botones tema + menú derecha, menú desplegable con navegación y acceso de sesión.
+
+## Contraste en modo oscuro
+- `.hp-btn-outline` en dark debe verse activo y legible (texto claro, borde visible, hover naranja).
+- Botones principales y secundarios deben mantener contraste AA en fondos oscuros.
