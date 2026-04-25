@@ -10,6 +10,7 @@ Huellitas Perdidas v2 es la reestructuración completa del backend de la platafo
 ## Alcance actual
 - **Fase 1**: Usuarios (`users`), roles (`roles` + `role_user`) y perfiles (`user_profiles`).
 - **Fase 2**: Catálogos y ubicación (`species`, `breeds`, `colors`, `states`, `municipalities`, `neighborhoods`, `locations`).
+- **Fase 3**: Mascotas y publicaciones (`pets`, `posts`, `post_lost_details`, `post_found_details`, `post_adoption_details`, `post_photos`).
 
 ## Objetivo de consumo
 El backend queda preparado para:

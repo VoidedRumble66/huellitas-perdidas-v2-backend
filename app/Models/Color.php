@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Color extends Model
@@ -22,5 +23,15 @@ class Color extends Model
         return [
             'active' => 'boolean',
         ];
+    }
+
+    public function mainColorPets(): HasMany
+    {
+        return $this->hasMany(Pet::class, 'main_color_id');
+    }
+
+    public function secondaryColorPets(): HasMany
+    {
+        return $this->hasMany(Pet::class, 'secondary_color_id');
     }
 }

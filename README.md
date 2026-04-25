@@ -49,13 +49,12 @@ php artisan serve
 - `php artisan migrate --seed`
 - `php artisan serve`
 
-## Estado actual (fase 1)
-Por ahora se implementó únicamente la base de:
-- usuarios (`users`)
-- roles (`roles` y pivote `role_user`)
-- perfiles de usuario (`user_profiles`)
+## Progreso del proyecto
+- ✅ Fase 1 completada: usuarios, roles y perfiles.
+- ✅ Fase 2 completada: catálogos y ubicación.
+- ✅ Fase 3 completada: mascotas y publicaciones.
 
-No se incluyeron aún módulos de mascotas, publicaciones, adopciones, reportes, organizaciones, reputación, métricas ni mapas.
+Módulos pendientes para fases siguientes: comentarios, avistamientos, reportes, solicitudes de adopción, organizaciones, reputación, métricas y mapas.
 
 ## Documentación
 Consulta la carpeta [`/docs`](docs) para arquitectura, base de datos, reglas técnicas e instalación en Herd.
