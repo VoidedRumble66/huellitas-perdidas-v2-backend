@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             BreedSeeder::class,
             ColorSeeder::class,
             LocationCatalogSeeder::class,
+            ReportReasonSeeder::class,
         ]);
     }
 }

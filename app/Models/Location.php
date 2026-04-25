@@ -52,4 +52,9 @@ class Location extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    public function sightings(): HasMany
+    {
+        return $this->hasMany(PostSighting::class);
+    }
 }

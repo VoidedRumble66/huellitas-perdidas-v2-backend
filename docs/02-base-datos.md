@@ -407,3 +407,144 @@
 - FK con `cascadeOnDelete`.
 - Índices compuestos por `post_id + is_main` y `post_id + sort_order`.
 - Solo se define estructura de BD; no almacenamiento físico de archivos en esta fase.
+
+---
+
+## Bloque A: Comentarios, avistamientos, reportes y moderación
+
+### Tabla: comments
+**Propósito:** guardar comentarios y respuestas dentro de publicaciones.
+
+**Campos principales:**
+- `id`
+- `post_id` (FK a `posts`)
+- `user_id` (nullable, FK a `users`)
+- `parent_id` (nullable, FK a `comments`)
+- `body`
+- `status` (default `visible`)
+- `edited_at` (nullable)
+- `metadata` (json nullable)
+- `timestamps`
+- `deleted_at` (SoftDeletes)
+
+**Relaciones:**
+- belongs-to con `posts`.
+- belongs-to con `users`.
+- belongs-to con `comments` (parent).
+- one-to-many con `comments` (replies).
+- morph-many con `reports`.
+- morph-many con `moderation_actions`.
+
+**Notas importantes:**
+- `post_id` usa `cascadeOnDelete`.
+- `user_id` usa `nullOnDelete` para conservar historial.
+- `parent_id` usa `nullOnDelete` para evitar borrar cadenas de respuestas completas.
+- Índices: `post_id`, `user_id`, `parent_id`, `status`.
+- Estados esperados: `visible`, `hidden`, `reported`, `deleted`.
+
+### Tabla: post_sightings
+**Propósito:** guardar avistamientos reportados por usuarios sobre publicaciones.
+
+**Campos principales:**
+- `id`
+- `post_id` (FK a `posts`)
+- `user_id` (nullable, FK a `users`)
+- `location_id` (nullable, FK a `locations`)
+- `description`
+- `seen_at` (nullable)
+- `confidence_level` (default `medium`)
+- `status` (default `pending`)
+- `reviewed_by` (nullable, FK a `users`)
+- `reviewed_at` (nullable)
+- `metadata` (json nullable)
+- `timestamps`
+- `deleted_at` (SoftDeletes)
+
+**Relaciones:**
+- belongs-to con `posts`.
+- belongs-to con `users` (autor y reviewer).
+- belongs-to con `locations`.
+- morph-many con `reports`.
+- morph-many con `moderation_actions`.
+
+**Notas importantes:**
+- `post_id` usa `cascadeOnDelete`.
+- `user_id`, `location_id` y `reviewed_by` usan `nullOnDelete`.
+- Índices: `post_id`, `user_id`, `location_id`, `status`, `confidence_level`, `seen_at`.
+- `confidence_level`: `low`, `medium`, `high`.
+- `status`: `pending`, `confirmed`, `rejected`, `hidden`.
+
+### Tabla: report_reasons
+**Propósito:** catálogo de motivos para reportar contenido o comportamiento.
+
+**Campos principales:**
+- `id`
+- `name` (único)
+- `slug` (único)
+- `description` (nullable)
+- `applies_to` (json nullable)
+- `active` (default `true`)
+- `timestamps`
+- `deleted_at` (SoftDeletes)
+
+**Relaciones:**
+- one-to-many con `reports`.
+
+**Notas importantes:**
+- Seeder idempotente con motivos iniciales (spam, información falsa, duplicados, posible chantaje, etc.).
+- `applies_to` permite definir entidades aplicables: posts, comments, sightings, users.
+
+### Tabla: reports
+**Propósito:** guardar reportes sobre publicaciones, comentarios, avistamientos o usuarios.
+
+**Campos principales:**
+- `id`
+- `reporter_user_id` (nullable, FK a `users`)
+- `reportable_type` + `reportable_id` (polimórfico)
+- `report_reason_id` (FK a `report_reasons`)
+- `description` (nullable)
+- `status` (default `pending`)
+- `priority` (default `normal`)
+- `reviewed_by` (nullable, FK a `users`)
+- `reviewed_at` (nullable)
+- `resolution_notes` (nullable)
+- `metadata` (json nullable)
+- `timestamps`
+- `deleted_at` (SoftDeletes)
+
+**Relaciones:**
+- belongs-to con `users` (reporter y reviewer).
+- belongs-to con `report_reasons`.
+- morph-to `reportable`.
+- morph-many con `moderation_actions` (target).
+
+**Notas importantes:**
+- `report_reason_id` usa `restrictOnDelete`.
+- `reporter_user_id` y `reviewed_by` usan `nullOnDelete`.
+- Índices: `reportable_type + reportable_id`, `status`, `priority`, `reporter_user_id`, `reviewed_by`, `created_at`.
+- Estados: `pending`, `in_review`, `resolved`, `rejected`, `ignored`.
+- Prioridad: `low`, `normal`, `high`, `critical`.
+
+### Tabla: moderation_actions
+**Propósito:** historial/auditoría de acciones administrativas sobre contenido o usuarios.
+
+**Campos principales:**
+- `id`
+- `moderator_user_id` (nullable, FK a `users`)
+- `target_type` + `target_id` (polimórfico)
+- `action`
+- `reason` (nullable)
+- `previous_status` (nullable)
+- `new_status` (nullable)
+- `metadata` (json nullable)
+- `created_at`
+- `updated_at`
+
+**Relaciones:**
+- belongs-to con `users` como moderator.
+- morph-to `target`.
+
+**Notas importantes:**
+- No usa soft deletes para conservar auditoría.
+- Índices: `target_type + target_id`, `moderator_user_id`, `action`, `created_at`.
+- Acciones esperadas: `approve`, `reject`, `hide`, `restore`, `delete`, `suspend_user`, `ban_user`, `mark_as_fake`, `mark_as_duplicate`, `mark_as_scam_attempt`, `resolve_report`, `ignore_report`.

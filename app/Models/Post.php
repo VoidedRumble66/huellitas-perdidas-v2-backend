@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
@@ -81,6 +82,26 @@ class Post extends Model
     public function mainPhoto(): HasOne
     {
         return $this->hasOne(PostPhoto::class)->where('is_main', true);
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function sightings(): HasMany
+    {
+        return $this->hasMany(PostSighting::class);
+    }
+
+    public function reports(): MorphMany
+    {
+        return $this->morphMany(Report::class, 'reportable');
+    }
+
+    public function moderationActions(): MorphMany
+    {
+        return $this->morphMany(ModerationAction::class, 'target');
     }
 
     public function scopePublished(Builder $query): Builder
