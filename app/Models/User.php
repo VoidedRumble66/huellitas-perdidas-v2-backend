@@ -99,6 +99,31 @@ class User extends Authenticatable
         return $this->morphMany(Report::class, 'reportable');
     }
 
+    public function adoptionRequests(): HasMany
+    {
+        return $this->hasMany(AdoptionRequest::class, 'applicant_user_id');
+    }
+
+    public function reviewedAdoptionRequests(): HasMany
+    {
+        return $this->hasMany(AdoptionRequest::class, 'reviewed_by');
+    }
+
+    public function organizations(): HasMany
+    {
+        return $this->hasMany(Organization::class, 'owner_user_id');
+    }
+
+    public function approvedOrganizations(): HasMany
+    {
+        return $this->hasMany(Organization::class, 'approved_by');
+    }
+
+    public function adoptionStatusChanges(): HasMany
+    {
+        return $this->hasMany(AdoptionStatusHistory::class, 'changed_by');
+    }
+
     public function hasRole(string $role): bool
     {
         return $this->roles()->where('name', $role)->exists();

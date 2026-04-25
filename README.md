@@ -54,8 +54,9 @@ php artisan serve
 - ✅ Fase 2 completada: catálogos y ubicación.
 - ✅ Fase 3 completada: mascotas y publicaciones.
 - ✅ Bloque A completado: comentarios, avistamientos, reportes y moderación.
+- ✅ Bloque B completado: adopciones y organizaciones.
 
-Módulos pendientes para fases siguientes: solicitudes de adopción, organizaciones, reputación y métricas de negocio.
+Módulos pendientes para fases siguientes: reputación, métricas de negocio y difusión en redes.
 
 ## Documentación
 Consulta la carpeta [`/docs`](docs) para arquitectura, base de datos, reglas técnicas e instalación en Herd.

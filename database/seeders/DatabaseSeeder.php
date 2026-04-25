@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             ColorSeeder::class,
             LocationCatalogSeeder::class,
             ReportReasonSeeder::class,
+            OrganizationServiceTemplateSeeder::class,
         ]);
     }
 }

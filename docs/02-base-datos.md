@@ -548,3 +548,168 @@
 - No usa soft deletes para conservar auditoría.
 - Índices: `target_type + target_id`, `moderator_user_id`, `action`, `created_at`.
 - Acciones esperadas: `approve`, `reject`, `hide`, `restore`, `delete`, `suspend_user`, `ban_user`, `mark_as_fake`, `mark_as_duplicate`, `mark_as_scam_attempt`, `resolve_report`, `ignore_report`.
+
+---
+
+## Bloque B: Adopciones y organizaciones
+
+### Tabla: adoption_requests
+**Propósito:** guardar solicitudes de usuarios interesados en adoptar mascotas publicadas.
+
+**Campos principales:**
+- `id`
+- `post_id` (FK a `posts`)
+- `applicant_user_id` (nullable, FK a `users`)
+- `status` (default `pending`)
+- `housing_type` (nullable)
+- `has_other_pets` (nullable)
+- `other_pets_description` (nullable)
+- `experience_with_pets` (nullable)
+- `reason_for_adoption` (nullable)
+- `responsible_adult_name` (nullable)
+- `contact_phone` (nullable)
+- `contact_email` (nullable)
+- `notes` (nullable)
+- `selected_at`, `approved_at`, `rejected_at`, `cancelled_at`, `completed_at` (nullable)
+- `reviewed_by` (nullable, FK a `users`)
+- `metadata` (json nullable)
+- `timestamps`
+- `deleted_at` (SoftDeletes)
+
+**Relaciones:**
+- belongs-to con `posts`.
+- belongs-to con `users` como applicant.
+- belongs-to con `users` como reviewer.
+- one-to-many con `adoption_status_histories`.
+
+**Notas importantes:**
+- `post_id` usa `cascadeOnDelete`.
+- `applicant_user_id` y `reviewed_by` usan `nullOnDelete`.
+- Unique compuesto `post_id + applicant_user_id` para evitar duplicados por usuario/publicación.
+- Estados: `pending`, `in_review`, `shortlisted`, `selected`, `approved`, `rejected`, `cancelled`, `completed`.
+- `housing_type`: `house`, `apartment`, `ranch`, `other`, `unknown`.
+
+### Tabla: adoption_status_histories
+**Propósito:** registrar cada transición de estado de una solicitud de adopción.
+
+**Campos principales:**
+- `id`
+- `adoption_request_id` (FK a `adoption_requests`)
+- `changed_by` (nullable, FK a `users`)
+- `old_status` (nullable)
+- `new_status`
+- `notes` (nullable)
+- `metadata` (json nullable)
+- `created_at`
+- `updated_at`
+
+**Relaciones:**
+- belongs-to con `adoption_requests`.
+- belongs-to con `users` como changedBy.
+
+**Notas importantes:**
+- `adoption_request_id` usa `cascadeOnDelete`.
+- `changed_by` usa `nullOnDelete`.
+- No usa soft deletes por ser historial.
+
+### Tabla: organizations
+**Propósito:** registrar refugios, veterinarias y otras organizaciones aliadas o futuras.
+
+**Campos principales:**
+- `id`
+- `owner_user_id` (nullable, FK a `users`)
+- `organization_type`
+- `name`
+- `slug` (único)
+- `email`, `phone`, `whatsapp` (nullable)
+- `description` (nullable)
+- `logo_path` (nullable)
+- `status` (default `pending_review`)
+- `location_id` (nullable, FK a `locations`)
+- `website_url`, `facebook_url`, `instagram_url` (nullable)
+- `verified_at`, `approved_at`, `rejected_at` (nullable)
+- `approved_by` (nullable, FK a `users`)
+- `rejection_reason` (nullable)
+- `metadata` (json nullable)
+- `timestamps`
+- `deleted_at` (SoftDeletes)
+
+**Relaciones:**
+- belongs-to con `users` como owner.
+- belongs-to con `users` como approver.
+- belongs-to con `locations`.
+- one-to-many con `organization_services`, `organization_schedules`, `organization_media`.
+
+**Notas importantes:**
+- `owner_user_id`, `approved_by` y `location_id` usan `nullOnDelete`.
+- `organization_type`: `shelter`, `veterinary`, `association`, `store`, `rescuer_group`, `other`.
+- `status`: `pending_review`, `approved`, `rejected`, `suspended`, `inactive`.
+
+### Tabla: organization_services
+**Propósito:** almacenar servicios ofrecidos por cada organización.
+
+**Campos principales:**
+- `id`
+- `organization_id` (FK a `organizations`)
+- `service_name`
+- `description` (nullable)
+- `estimated_cost` (nullable)
+- `currency` (default `MXN`)
+- `active` (default `true`)
+- `metadata` (json nullable)
+- `timestamps`
+- `deleted_at` (SoftDeletes)
+
+**Relaciones:**
+- belongs-to con `organizations`.
+
+**Notas importantes:**
+- `organization_id` usa `cascadeOnDelete`.
+- Unique compuesto `organization_id + service_name`.
+- Índice por `organization_id + active`.
+
+### Tabla: organization_schedules
+**Propósito:** guardar horarios de atención de organizaciones.
+
+**Campos principales:**
+- `id`
+- `organization_id` (FK a `organizations`)
+- `day_of_week` (1..7)
+- `opens_at` (nullable)
+- `closes_at` (nullable)
+- `is_closed` (default `false`)
+- `notes` (nullable)
+- `timestamps`
+
+**Relaciones:**
+- belongs-to con `organizations`.
+
+**Notas importantes:**
+- `organization_id` usa `cascadeOnDelete`.
+- Índice compuesto por `organization_id + day_of_week`.
+- No usa soft deletes.
+
+### Tabla: organization_media
+**Propósito:** almacenar fotos, logos o documentos de organizaciones.
+
+**Campos principales:**
+- `id`
+- `organization_id` (FK a `organizations`)
+- `media_type` (default `photo`)
+- `path`
+- `original_filename` (nullable)
+- `mime_type` (nullable)
+- `size_kb` (nullable)
+- `sort_order` (default `0`)
+- `is_main` (default `false`)
+- `metadata` (json nullable)
+- `timestamps`
+- `deleted_at` (SoftDeletes)
+
+**Relaciones:**
+- belongs-to con `organizations`.
+
+**Notas importantes:**
+- `organization_id` usa `cascadeOnDelete`.
+- Índices: `organization_id + media_type`, `organization_id + is_main`, `organization_id + sort_order`.
+- `media_type` esperado: `photo`, `logo`, `document`, `verification`, `other`.

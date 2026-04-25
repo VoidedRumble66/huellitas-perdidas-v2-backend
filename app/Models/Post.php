@@ -104,6 +104,11 @@ class Post extends Model
         return $this->morphMany(ModerationAction::class, 'target');
     }
 
+    public function adoptionRequests(): HasMany
+    {
+        return $this->hasMany(AdoptionRequest::class);
+    }
+
     public function scopePublished(Builder $query): Builder
     {
         return $query->where('status', 'published');

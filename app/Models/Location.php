@@ -57,4 +57,9 @@ class Location extends Model
     {
         return $this->hasMany(PostSighting::class);
     }
+
+    public function organizations(): HasMany
+    {
+        return $this->hasMany(Organization::class);
+    }
 }
