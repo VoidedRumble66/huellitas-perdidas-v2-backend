@@ -16,8 +16,9 @@ Huellitas Perdidas v2 es la reestructuración completa del backend de la platafo
 
 ## Objetivo de consumo
 El backend queda preparado para:
-- Exponer API para app móvil en Flutter.
-- Soportar una web administrativa futura (Blade; con posibilidad de Livewire más adelante).
+- Soportar la plataforma web responsive + PWA actual.
+- Exponer API futura para app móvil nativa o híbrida.
+- Mantener evolución en Blade y evaluar Livewire en etapas posteriores.
 
 ## Entorno local
 El desarrollo local está pensado para **Laravel Herd**.

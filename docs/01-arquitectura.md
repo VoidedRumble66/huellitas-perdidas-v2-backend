@@ -1,42 +1,43 @@
 # 01 - Arquitectura base
 
 ## Visión general
-Huellitas Perdidas v2 adopta una arquitectura **web-first** con Laravel como núcleo del sistema. En esta etapa, Laravel funciona tanto como backend como capa web principal.
+Huellitas Perdidas v2 adopta una arquitectura **web-first** con Laravel como núcleo del sistema. En esta etapa, Laravel funciona como backend y capa web principal con una experiencia responsive + PWA.
 
 ## Backend y capa web principal
-- **Laravel** se usa para reglas de negocio, acceso a datos, seguridad y entrega de vistas web.
-- La interfaz inicial será renderizada con **Blade** (server-side rendering), priorizando simplicidad y velocidad de implementación.
-- La experiencia inicial del producto será **web responsive mobile-first**.
+- **Laravel** se usa para reglas de negocio, seguridad, persistencia y renderizado inicial de vistas.
+- La UI base se construye con **Blade** y un sistema visual reusable propio.
+- El producto se desarrolla en enfoque **mobile-first**, priorizando usabilidad desde navegador móvil.
+
+## Sistema visual y UX
+- Existe un layout base con navbar, footer y componentes reutilizables (botones, cards, chips, alertas, formularios).
+- Se mantiene identidad de marca Huellitas (`#F27F3E` y `#2C3E50`) con soporte de tema claro/oscuro.
+- El modo oscuro se implementa con persistencia en cliente y fallback a `prefers-color-scheme`.
 
 ## Base de datos
-- **PostgreSQL** es la base de datos principal.
-- El esquema actual cubre usuarios, publicaciones, mascotas, moderación, adopciones, organizaciones, reputación y auditoría.
+- **PostgreSQL** es la base principal.
+- El modelo actual cubre usuarios, publicaciones, mascotas, moderación, adopciones, organizaciones, reputación y auditoría.
 
 ## Estrategia PWA
-- El producto iniciará como una plataforma web con capacidades de **PWA instalable**.
-- Los usuarios podrán acceder desde navegador y también instalar la aplicación web como ícono en el celular.
-- Esta etapa prioriza una implementación PWA base, con evolución progresiva de capacidades offline y notificaciones.
+- El producto inicia como web con capacidades de **PWA instalable**.
+- Manifest y service worker se mantienen activos y alineados al sistema visual.
+- La estrategia de caché evita datos sensibles y rutas privadas.
 
 ## Autenticación y API futura
-- **Laravel Sanctum** se conserva para soportar autenticación en una **API futura**.
-- Aunque el foco inicial no es API pública completa, la arquitectura queda preparada para exponer servicios a clientes móviles más adelante.
+- **Laravel Sanctum** se conserva para autenticación en una API futura.
+- La arquitectura se mantiene API-ready para una futura app móvil nativa o híbrida.
 
 ## Escalabilidad para futura app móvil
-- El dominio y la persistencia se mantienen independientes de la capa visual.
-- La lógica de negocio deberá moverse progresivamente a **Actions/Services** para reutilizarse entre controladores web y API.
-- Esto permite que una app nativa o híbrida futura consuma la misma lógica mediante API.
+- Dominio y persistencia desacoplados de la capa visual.
+- La lógica de negocio debe vivir en **Actions/Services** para reutilización entre web y API.
+- Controladores web y API futuros compartirán reglas de negocio comunes.
 
 ## Decisiones explícitas de esta etapa
-En esta fase **no** se usará:
+En esta fase **no** se usa:
 - Flutter
 - React
 - Vue
 - Inertia
-- Livewire (se deja como opción futura, pero no se instala ahora)
-
-## Evolución de UI
-- **Blade** es la tecnología inicial de vistas.
-- **Livewire** podrá evaluarse en una fase posterior para interacciones dinámicas sin adoptar un frontend SPA completo.
+- Livewire (opción futura, no instalado por ahora)
 
 ## Entorno local
-El entorno recomendado y documentado sigue siendo **Laravel Herd**.
+El entorno recomendado sigue siendo **Laravel Herd**.

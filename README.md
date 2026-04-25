@@ -67,3 +67,10 @@ Módulos siguientes: implementación de funcionalidades de negocio, flujo web re
 
 ## Documentación
 Consulta la carpeta [`/docs`](docs) para arquitectura, base de datos, reglas técnicas e instalación en Herd.
+
+
+## Sistema visual y experiencia web
+- Identidad visual basada en marca Huellitas (naranja #F27F3E, secundario #2C3E50 y acento lima editable).
+- Layout web responsive reutilizable con navbar, footer y home pública inicial en Blade.
+- Soporte de tema claro/oscuro con preferencia persistida en el navegador.
+- Base PWA mantenida (manifest + service worker) alineada al sistema visual.

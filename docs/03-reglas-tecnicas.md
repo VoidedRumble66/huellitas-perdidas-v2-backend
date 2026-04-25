@@ -15,3 +15,8 @@
 13. La PWA no debe cachear datos sensibles.
 14. Las rutas administrativas no deben cachearse en el service worker.
 15. Tokens, sesiones o datos privados no deben guardarse en caché pública.
+16. Mantener identidad visual consistente con el sistema definido en `docs/12-sistema-visual.md`.
+17. Usar una sola familia de iconografía por pantalla para evitar inconsistencias.
+18. Garantizar contraste, foco visible y controles táctiles cómodos en móvil.
+19. Evitar componentes frontend pesados cuando CSS reusable cubra el requerimiento.
+20. Toda nueva vista pública debe soportar tema claro/oscuro y layout responsive.
