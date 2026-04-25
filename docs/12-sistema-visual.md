@@ -69,9 +69,12 @@
 ## Reglas de navbar
 - Desktop: una sola línea con logo izquierda, menú centrado y acciones a la derecha.
 - Navbar muestra nombre de marca junto al logo para reforzar identidad visual.
+- En desktop se usa estilo compacto para mantener una sola línea limpia con enlaces largos.
 - Móvil: logo izquierda, botones tema + menú derecha, menú desplegable con navegación y acceso de sesión.
 
 ## Reglas de cards de publicaciones recientes
+- Para listados públicos usar también `.hp-listing-header`, `.hp-search-bar` y `.hp-pagination`.
+- Para detalle público usar `.hp-detail-layout`, `.hp-detail-gallery`, `.hp-detail-main` y `.hp-detail-sidebar`.
 - Máximo 4 ítems por bloque en home para priorizar escaneo rápido.
 - Imagen arriba; si no existe, usar placeholder interno con “Sin imagen”.
 - Metadatos mínimos: especie, raza (si existe), ubicación, resumen corto.

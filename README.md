@@ -84,3 +84,6 @@ Consulta la carpeta [`/docs`](docs) para arquitectura, base de datos, reglas té
 - Home pública dinámica inicial con consulta server-side desde `HomeController@index`.
 - Secciones de publicaciones recientes: 4 mascotas perdidas y 4 en adopción (si existen).
 - Corrección de contraste del CTA claro en modo oscuro para asegurar legibilidad.
+- Navbar refinado en desktop (más compacto, balanceado y con mejor legibilidad de links largos).
+- Listados públicos de publicaciones y adopciones disponibles con búsqueda y paginación.
+- Detalle básico público para publicaciones y adopciones con galería, metadatos y acciones placeholder.

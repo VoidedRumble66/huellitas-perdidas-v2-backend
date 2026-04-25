@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-        $relations = ['pet.species', 'pet.breed', 'pet.mainColor', 'location', 'mainPhoto'];
+        $relations = ['pet.species', 'pet.breed', 'pet.mainColor', 'location', 'mainPhoto', 'photos', 'author'];
 
         $lostPosts = Post::query()
             ->with($relations)

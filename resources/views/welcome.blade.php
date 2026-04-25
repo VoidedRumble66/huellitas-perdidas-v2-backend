@@ -35,8 +35,8 @@
                     <p class="hp-lead">Una plataforma comunitaria para mascotas perdidas, encontradas y en adopción en Ocosingo, Chiapas.</p>
 
                     <div class="hp-actions-row">
-                        <a class="hp-btn hp-btn-primary" href="#publicaciones-recientes">Ver publicaciones</a>
-                        <a class="hp-btn hp-btn-outline" href="#cta-comunidad">Comenzar ahora</a>
+                        <a class="hp-btn hp-btn-primary" href="{{ Route::has('posts.index') ? route('posts.index') : "#" }}">Ver publicaciones</a>
+                        <a class="hp-btn hp-btn-outline" href="{{ Route::has('adoptions.index') ? route('adoptions.index') : "#" }}">Ver adopciones</a>
                     </div>
 
                     <p class="hp-pwa-note">También podrás instalar Huellitas en tu celular como acceso tipo app.</p>
