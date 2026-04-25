@@ -49,6 +49,7 @@
                         onerror="this.classList.add('hp-hidden'); this.nextElementSibling.classList.remove('hp-hidden');"
                     >
                     <span class="hp-logo-fallback hp-hidden" aria-hidden="true">Huellitas</span>
+                    <span class="hp-brand-copy">Huellitas Perdidas</span>
                 </a>
 
                 <nav aria-label="Principal">

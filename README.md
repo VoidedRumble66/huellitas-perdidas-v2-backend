@@ -81,3 +81,6 @@ Consulta la carpeta [`/docs`](docs) para arquitectura, base de datos, reglas té
 
 - Montserrat como fuente oficial en layout y componentes clave.
 - Navbar desktop en una sola línea (logo, menú, acciones) con contraste reforzado en modo oscuro.
+- Home pública dinámica inicial con consulta server-side desde `HomeController@index`.
+- Secciones de publicaciones recientes: 4 mascotas perdidas y 4 en adopción (si existen).
+- Corrección de contraste del CTA claro en modo oscuro para asegurar legibilidad.

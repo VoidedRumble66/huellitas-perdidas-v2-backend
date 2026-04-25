@@ -17,10 +17,10 @@
 `--hp-lime-50` a `--hp-lime-900` (acento en `--hp-lime-500: #A8C95F`).
 
 ### Fondos
-- `--hp-bg: #FAF8F5`
-- `--hp-bg-soft: #F7F5F1`
+- `--hp-bg: #F7F3EE`
+- `--hp-bg-soft: #FAF8F5`
 - `--hp-surface: #FFFFFF`
-- `--hp-surface-muted: #F2EFEA`
+- `--hp-surface-muted: #F2ECE5`
 
 ### Textos y bordes
 - `--hp-text: #2B2B2B`
@@ -44,7 +44,10 @@
 ## Componentes reutilizables (CSS)
 - Layout: `.hp-container`, `.hp-section`, `.hp-section-muted`, `.hp-grid`.
 - Botones: `.hp-btn`, `.hp-btn-primary`, `.hp-btn-secondary`, `.hp-btn-outline`, `.hp-btn-ghost`.
-- Cards: `.hp-card`, `.hp-card-hover`, `.hp-feature-card`.
+- Cards base: `.hp-card`, `.hp-card-hover`, `.hp-feature-card`.
+- Cards de publicaciones públicas: `.hp-post-grid`, `.hp-post-card`, `.hp-post-card-image`, `.hp-post-card-body`, `.hp-post-card-title`, `.hp-post-card-meta`, `.hp-post-card-description`, `.hp-post-card-actions`.
+- Empty states: `.hp-empty-state`.
+- CTA de fondo claro: `.hp-cta-panel`.
 - Badges: `.hp-badge`, `.hp-badge-orange`, `.hp-badge-lime`, `.hp-badge-danger`, `.hp-badge-info`.
 - Formularios: `.hp-form-group`, `.hp-label`, `.hp-input`, `.hp-select`, `.hp-textarea`, `.hp-error`.
 - Alertas: `.hp-alert`, `.hp-alert-success`, `.hp-alert-warning`, `.hp-alert-danger`, `.hp-alert-info`.
@@ -55,9 +58,34 @@
 - Persistencia en `localStorage` con clave `huellitas-theme`.
 - Si no hay preferencia guardada, se usa `prefers-color-scheme`.
 
-## Iconografía
-- Una sola familia SVG coherente.
-- Redes (Facebook, WhatsApp, Instagram) en estilo homogéneo.
+## Corrección de contraste del CTA en dark mode
+- Cuando un panel CTA mantiene fondo claro en dark mode, debe forzarse texto oscuro legible.
+- Regla aplicada:
+  - `[data-theme="dark"] .hp-cta-panel { color: #2B2B2B; }`
+  - `[data-theme="dark"] .hp-cta-panel h2 { color: #2B2B2B; }`
+  - `[data-theme="dark"] .hp-cta-panel p { color: #40586B; }`
+- El botón primario naranja se mantiene sin cambios para preservar la jerarquía visual.
+
+## Reglas de navbar
+- Desktop: una sola línea con logo izquierda, menú centrado y acciones a la derecha.
+- Navbar muestra nombre de marca junto al logo para reforzar identidad visual.
+- Móvil: logo izquierda, botones tema + menú derecha, menú desplegable con navegación y acceso de sesión.
+
+## Reglas de cards de publicaciones recientes
+- Máximo 4 ítems por bloque en home para priorizar escaneo rápido.
+- Imagen arriba; si no existe, usar placeholder interno con “Sin imagen”.
+- Metadatos mínimos: especie, raza (si existe), ubicación, resumen corto.
+- Acciones con contraste alto y sin estados que parezcan deshabilitados.
+
+## Reglas de empty states
+- Deben usar `hp-card` y `hp-empty-state`.
+- Incluir icono simple SVG, título claro y texto orientativo.
+- Mantener fondo suave en claro y contraste correcto en oscuro.
+
+## Contraste en modo oscuro
+- `.hp-btn-outline` en dark debe verse activo y legible (texto claro, borde visible, hover naranja).
+- Botones principales y secundarios deben mantener contraste AA en fondos oscuros.
+- Evitar opacidades bajas en botones interactivos.
 
 ## Reglas para futuras pantallas
 1. Preferir clases reusable de `huellitas.css` antes de estilos nuevos.
@@ -74,11 +102,3 @@
 - Logo oficial: `public/images/logo.png`.
 - Debe renderizarse sin fondo agregado, sin borde, sin recorte y sin redondeo forzado.
 - Clase recomendada: `.hp-logo-img` con `object-fit: contain`.
-
-## Reglas de navbar
-- Desktop: una sola línea con logo izquierda, menú centrado y acciones a la derecha.
-- Móvil: logo izquierda, botones tema + menú derecha, menú desplegable con navegación y acceso de sesión.
-
-## Contraste en modo oscuro
-- `.hp-btn-outline` en dark debe verse activo y legible (texto claro, borde visible, hover naranja).
-- Botones principales y secundarios deben mantener contraste AA en fondos oscuros.
