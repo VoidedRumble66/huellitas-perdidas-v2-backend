@@ -74,3 +74,7 @@ Consulta la carpeta [`/docs`](docs) para arquitectura, base de datos, reglas té
 - Layout web responsive reutilizable con navbar, footer y home pública inicial en Blade.
 - Soporte de tema claro/oscuro con preferencia persistida en el navegador.
 - Base PWA mantenida (manifest + service worker) alineada al sistema visual.
+
+- Logo oficial en `public/images/logo.png` con integración en navbar, footer y home.
+- Sistema visual reusable con paleta por gamas y soporte de modo claro/oscuro.
+- Se evita CSS inline grande en Blade para mantener consistencia y escalabilidad.

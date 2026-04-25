@@ -20,3 +20,7 @@
 18. Garantizar contraste, foco visible y controles táctiles cómodos en móvil.
 19. Evitar componentes frontend pesados cuando CSS reusable cubra el requerimiento.
 20. Toda nueva vista pública debe soportar tema claro/oscuro y layout responsive.
+
+21. Usar logo oficial en `public/images/logo.png`; no usar rutas o logos alternos.
+22. Evitar estilos inline extensos en Blade; preferir clases reusable en `public/css/huellitas.css`.
+23. Mantener la paleta por gamas definida en `docs/12-sistema-visual.md`.

@@ -9,9 +9,9 @@ Huellitas Perdidas v2 adopta una arquitectura **web-first** con Laravel como nú
 - El producto se desarrolla en enfoque **mobile-first**, priorizando usabilidad desde navegador móvil.
 
 ## Sistema visual y UX
-- Existe un layout base con navbar, footer y componentes reutilizables (botones, cards, chips, alertas, formularios).
-- Se mantiene identidad de marca Huellitas (`#F27F3E` y `#2C3E50`) con soporte de tema claro/oscuro.
-- El modo oscuro se implementa con persistencia en cliente y fallback a `prefers-color-scheme`.
+- Identidad visual propia de Huellitas con paleta por gamas y componentes reusable.
+- Logo oficial preparado en `public/images/logo.png` (render con fallback cuando aún no exista).
+- Soporte de modo claro/oscuro en layout base con persistencia en navegador.
 
 ## Base de datos
 - **PostgreSQL** es la base principal.

@@ -1,98 +1,67 @@
 # 12 - Sistema visual base
 
-## Objetivo
-Definir una base visual reusable para Huellitas Perdidas v2 con identidad de marca consistente, mobile-first, PWA y soporte claro/oscuro.
+## Identidad y logo oficial
+- Logo oficial: `public/images/logo.png`.
+- Uso en Blade: `asset('images/logo.png')`.
+- Debe mostrarse en navbar, footer y home pública.
+- Si no existe aún, la vista usa fallback visual (texto/insignia) sin romper la carga.
 
-## Paleta por gamas (obligatoria)
+## Paleta por gamas
+### Naranja
+`--hp-orange-50` a `--hp-orange-900` (marca principal en `--hp-orange-500: #F27F3E`).
 
-### Naranja (marca)
-- `--hp-orange-50: #FFF2E9;`
-- `--hp-orange-100: #FFE1CC;`
-- `--hp-orange-200: #FFC39B;`
-- `--hp-orange-300: #FFA36A;`
-- `--hp-orange-400: #F98F50;`
-- `--hp-orange-500: #F27F3E;`
-- `--hp-orange-600: #D96528;`
-- `--hp-orange-700: #B94F1E;`
-- `--hp-orange-800: #8F3E1B;`
-- `--hp-orange-900: #6F3219;`
+### Gris azulado
+`--hp-bluegray-50` a `--hp-bluegray-900` (institucional en `--hp-bluegray-600: #2C3E50`).
 
-### Gris azulado (institucional/contraste)
-- `--hp-bluegray-50: #EEF3F7;`
-- `--hp-bluegray-100: #D8E2EA;`
-- `--hp-bluegray-200: #B4C5D1;`
-- `--hp-bluegray-300: #8BA4B5;`
-- `--hp-bluegray-400: #617F93;`
-- `--hp-bluegray-500: #40586B;`
-- `--hp-bluegray-600: #2C3E50;`
-- `--hp-bluegray-700: #243444;`
-- `--hp-bluegray-800: #1C2A38;`
-- `--hp-bluegray-900: #15212D;`
-
-### Verde limón (acento)
-- `--hp-lime-50: #F7FBEF;`
-- `--hp-lime-100: #EDF6D6;`
-- `--hp-lime-200: #DCEEB0;`
-- `--hp-lime-300: #C9E283;`
-- `--hp-lime-400: #B7D65E;`
-- `--hp-lime-500: #A8C95F;`
-- `--hp-lime-600: #8EAE43;`
-- `--hp-lime-700: #708B32;`
-- `--hp-lime-800: #586D2A;`
-- `--hp-lime-900: #455522;`
+### Verde limón
+`--hp-lime-50` a `--hp-lime-900` (acento en `--hp-lime-500: #A8C95F`).
 
 ### Fondos
-- `--hp-bg: #FAF8F5;`
-- `--hp-bg-soft: #F7F5F1;`
-- `--hp-surface: #FFFFFF;`
-- `--hp-surface-muted: #F2EFEA;`
+- `--hp-bg: #FAF8F5`
+- `--hp-bg-soft: #F7F5F1`
+- `--hp-surface: #FFFFFF`
+- `--hp-surface-muted: #F2EFEA`
+
+### Textos y bordes
+- `--hp-text: #2B2B2B`
+- `--hp-text-muted: #68717A`
+- `--hp-border: #E7E0D8`
 
 ### Estados
-- `--hp-success: #4F9D69;`
-- `--hp-success-soft: #EAF7EF;`
-- `--hp-warning: #E9A23B;`
-- `--hp-warning-soft: #FFF5E3;`
-- `--hp-danger: #D9534F;`
-- `--hp-danger-soft: #FDECEC;`
-- `--hp-info: #4A90A4;`
-- `--hp-info-soft: #EAF6F8;`
+- success, warning, danger e info con variantes `-soft`.
 
 ### Modo oscuro
-- `--hp-dark-bg: #151B22;`
-- `--hp-dark-surface: #1F2832;`
-- `--hp-dark-surface-muted: #27313D;`
-- `--hp-dark-border: #334252;`
-- `--hp-dark-text: #F4F6F8;`
-- `--hp-dark-muted: #B8C2CC;`
+- `--hp-dark-bg`, `--hp-dark-surface`, `--hp-dark-surface-muted`, `--hp-dark-border`, `--hp-dark-text`, `--hp-dark-muted`.
 
 ## Reglas de uso
-1. El naranja `#F27F3E` se usa en CTA principales, detalles de marca y enlaces importantes.
-2. El gris azulado `#2C3E50` se usa en footer, bloques institucionales, navbar oscuro y contraste.
-3. El verde limón `#A8C95F` se usa en badges, etiquetas, estados positivos, chips y acciones secundarias cortas.
-4. No usar blanco puro como fondo general; usar `--hp-bg`.
-5. Las cards pueden ser blancas con borde suave y sombra ligera.
-6. Evitar saturación cromática: priorizar legibilidad y jerarquía visual.
+1. Naranja para CTA principales y detalles de marca.
+2. Gris azulado para footer, bloques institucionales y contraste.
+3. Verde limón para badges, chips y acciones secundarias pequeñas.
+4. No usar blanco puro como fondo general (usar `--hp-bg`).
+5. Cards blancas permitidas con borde suave y sombra ligera.
+6. Evitar saturación cromática.
 
-## Tipografía base
-- Stack recomendada: `Inter`, `Segoe UI`, `Roboto`, `system-ui`.
-- Títulos fluidos con `clamp()` y cuerpo legible en móvil.
+## Componentes reutilizables (CSS)
+- Layout: `.hp-container`, `.hp-section`, `.hp-section-muted`, `.hp-grid`.
+- Botones: `.hp-btn`, `.hp-btn-primary`, `.hp-btn-secondary`, `.hp-btn-outline`, `.hp-btn-ghost`.
+- Cards: `.hp-card`, `.hp-card-hover`, `.hp-feature-card`.
+- Badges: `.hp-badge`, `.hp-badge-orange`, `.hp-badge-lime`, `.hp-badge-danger`, `.hp-badge-info`.
+- Formularios: `.hp-form-group`, `.hp-label`, `.hp-input`, `.hp-select`, `.hp-textarea`, `.hp-error`.
+- Alertas: `.hp-alert`, `.hp-alert-success`, `.hp-alert-warning`, `.hp-alert-danger`, `.hp-alert-info`.
+- Estructura: `.hp-navbar`, `.hp-footer`.
 
-## Componentes reutilizables
-Definidos en `public/css/huellitas.css`:
-- Botones: `btn-primary`, `btn-secondary`, `btn-outline`.
-- Cards: `card`, `status-lost`, `status-found`, `status-adoption`.
-- Chips/badges: `chip`, `chip-lime`, `chip-warning`, `chip-danger`.
-- Alertas: `alert`, `alert-info`.
-- Formularios: `form-control`.
-- Layout base: `container`, `section`, `grid-cards`.
+## Modo claro/oscuro
+- Se aplica con `data-theme` en `<html>`.
+- Persistencia en `localStorage` con clave `huellitas-theme`.
+- Si no hay preferencia guardada, se usa `prefers-color-scheme`.
 
 ## Iconografía
-- Usar una sola familia de iconos SVG coherentes por pantalla.
-- Mantener consistencia en estilo de redes (Facebook, WhatsApp, Instagram).
+- Una sola familia SVG coherente.
+- Redes (Facebook, WhatsApp, Instagram) en estilo homogéneo.
 
-## Lineamientos para futuras pantallas
-1. Reutilizar clases del sistema visual antes de crear estilos ad-hoc.
-2. Mantener contraste y foco visible para accesibilidad.
-3. Priorizar controles táctiles cómodos (mínimo 44px en interacciones clave).
-4. Garantizar compatibilidad clara/oscura en cada nueva pantalla pública.
-5. Mantener identidad emocional, comunitaria y amigable de Huellitas.
+## Reglas para futuras pantallas
+1. Preferir clases reusable de `huellitas.css` antes de estilos nuevos.
+2. Evitar estilos inline extensos en Blade.
+3. Mantener mínimo 44px en controles táctiles principales.
+4. Mantener foco visible y navegación por teclado.
+5. No usar colores fuera de la paleta salvo caso justificado.
